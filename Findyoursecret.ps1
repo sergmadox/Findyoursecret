@@ -8,7 +8,7 @@ function extention($Path){
 
     $files = gci -Recurse $Path
 
-    $extension = ('.ps1','.exe','.com','.application','.msi','.msp','.gadget'`
+    $extension = ('.exe','.com','.application','.msi','.msp','.gadget'`
               ,'.scr','.hta','.msc','.cpl','.jar','.jpg','.jpeg'`
               ,'.bat','.cmd','.vbe','.vb','.vbs','.msh1xml', '.msh2xml'`
               , '.mshxml', '.msh1','.msh2','.msh','.psc1','.psc2','.ps1',`
@@ -23,6 +23,7 @@ function extention($Path){
     Write-Progress -Id 0 -Activity 'Ищем исполняемые файлы' -Status "Завершено $($c1) из $($files.count)" -CurrentOperation $file -PercentComplete (($c1/$files.Count) * 100)
         for ($i = 0;$i -lt $extension.Length; $i++){
                 if ($extension[$i] -eq $file.Extension){
+              
                     $result_extension+= $file.FullName 
         }
         }
@@ -59,7 +60,7 @@ function filtered($Path){
        $filter = ('Пароль','ПАРОЛЬ','пароль','pass',`
                   'password','Password','PASSWORD',`
                   'пасс','ПАСС','Пасс'`
-                  ,'логин','Логин','ЛОГИН','login','Login','LOGIN','личный кабинет')
+                  ,'логин','login','Login','LOGIN','личный кабинет')
        
        $regex = '(?:^|\W)*?'
 
@@ -76,9 +77,8 @@ function filtered($Path){
                 
                 if ($result_filtered[$i] -like '*.txt'){
 
-                    searchtxt($result_filtered[$i],$fil)
-                   
-                    $finding_word += $result_filtered[$i]
+                    $finding_word += searchtxt($result_filtered[$i],$fil)
+                    
                     }
                 }
                 }
@@ -93,8 +93,9 @@ function searchtxt(){
  
        $regex = '(?:^|\W)*?'
        $regex_end = '(?:$|\W)*?'
-     
-       if ($text -cmatch $regex+$filter_word+$regex_end -eq $true){
+  
+       $a = $text -match $regex+$fil+$regex_end 
+       if ($a -eq $true){
                 return $result_filtered[$i]
                 }
                 }
