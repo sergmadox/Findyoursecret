@@ -1,6 +1,6 @@
 Скрипт посика в "шарах" отделов:
 	1) По и исполняемые файлы типа:
-	'.ps1','.exe','.com','.application','.msi','.msp','.gadget'
+	'.exe','.com','.application','.msi','.msp','.gadget'
          ,'.scr','.hta','.msc','.cpl','.jar','.jpg','.jpeg'
          ,'.bat','.cmd','.vbe','.vb','.vbs','.msh1xml', '.msh2xml'
          ,'.mshxml', '.msh1','.msh2','.msh','.psc1','.psc2','.ps1'
@@ -11,7 +11,8 @@
 Скрипт формирует *.cvs файлы с указанием путей до файлов
 
 Не исполнено:
-1) Поиск по фильтру в текстовых файлах
+1) Поиск по xlsx и xls форматам
+2) Поиск по doc и docx
 
 Запуск скрипта .\Findyoursecret.ps1 -Path <каталог>
 
